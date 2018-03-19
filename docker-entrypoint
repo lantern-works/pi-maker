@@ -22,6 +22,11 @@ cleanup() {
 
 trap cleanup EXIT
 
+if [[ -f "/tmp/${IMAGE_NAME}" ]]; then
+  echo "removing old image..."
+  rm /tmp/${IMAGE_NAME}
+fi
+
 disk-init
 load-os
 

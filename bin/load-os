@@ -16,15 +16,15 @@ tar -xpf "/tmp/${OS_IMAGE}" -C mnt 2> >(grep -v "Ignoring unknown extended heade
 ls -al mnt
 
 
+
 echo "#############################################"
 echo "## Tuning Operating System"
 echo "#############################################"
-rm mnt/etc/resolv.conf
-cp /etc/resolv.conf mnt/etc/resolv.conf
-cp /usr/bin/qemu-arm-static mnt/usr/bin/
-
 mount -t proc none mnt/proc
 mount -t sysfs none mnt/sys
 mount -o bind /dev mnt/dev
+rm mnt/etc/resolv.conf
+cp /etc/resolv.conf mnt/etc/resolv.conf
+cp /usr/bin/qemu-arm-static mnt/usr/bin/
 
 echo "completed tuning..."
