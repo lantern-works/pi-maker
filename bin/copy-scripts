@@ -11,6 +11,15 @@ if [[ -d "/tmp/install" ]]; then
       echo "added script: ${file}"
   done
 fi
+
+# allows pi-maker to run within directories with another container
+if [[ -d "/tmp/container/install" ]]; then
+  for file in /tmp/container/install/*;do
+      install -Dm755 "$file" "mnt/${file}"
+      echo "added script: ${file}"
+  done
+fi
+
 if [[ -f "/tmp/setup" ]]; then
   install -Dm755 "/tmp/setup" "mnt/tmp/setup"
   echo "added script: /tmp/setup"

@@ -5,3 +5,4 @@ echo "customizing device..."
 
 # install some software copied from shared volume...
 /tmp/install/test-install
+/tmp/container/install/more-install
