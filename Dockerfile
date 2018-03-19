@@ -15,4 +15,5 @@ RUN apt-get update && apt-get -y install \
 RUN ln -s `which nodejs` /usr/bin/node
 RUN mkdir -p /tmp/pi-maker
 COPY docker-entrypoint /usr/local/bin/docker-entrypoint
+COPY bin/* /usr/local/bin/
 ENTRYPOINT "/usr/local/bin/docker-entrypoint"

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+OS_IMAGE=${OS_IMAGE:-ArchLinuxARM-rpi-latest.tar.gz}
+OS_URI=${OS_URI:-http://archlinuxarm.org/os/${OS_IMAGE}}
+
+echo "#############################################"
+echo "## Installing Operating System"
+echo "#############################################"
+echo "downloading or using cache..."
+
+[ ! -f "/tmp/${OS_IMAGE}" ] && wget -P "/tmp" "${OS_URI}"
+
+echo "unpacking..."
+tar -xpf "/tmp/${OS_IMAGE}" -C /mnt 2> >(grep -v "Ignoring unknown extended header keyword")
+
+echo "preparing chroot..."
+mount -t proc none mnt/proc
+mount -t sysfs none mnt/sys
+mount -o bind /dev mnt/dev
+
+
+echo "#############################################"
+echo "## Tuning Operating System"
+echo "#############################################"
+rm mnt/etc/resolv.conf
+cp /etc/resolv.conf mnt/etc/resolv.conf
+cp /usr/bin/qemu-arm-static mnt/usr/bin/

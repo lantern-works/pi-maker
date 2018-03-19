@@ -1,11 +1,30 @@
 #!/bin/bash
 
+IMAGE_NAME=${IMAGE_NAME:-rpi.img}
+
 set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 IFS=$'\n\t'
 
 cleanup() {
-    echo "cleaning..."
+   if [[ -d "mnt" ]]; then
+        umount "mnt/dev" || true
+        umount "mnt/proc" || true
+        umount "mnt/sys" || true
+        umount "mnt/boot" || true
+        umount "mnt" || true
+        rmdir "mnt" || true
+   fi
+
+   loopdev=$(losetup --find --show "${IMAGE_NAME}")
+   [ -n "${loopdev}" ] && losetup --detach "${loopdev}" || true
 }
 
 trap cleanup EXIT
+
+disk-init
+load-os
+
+
+# Finally, after setup, make available for use with Docker volume
+cp "${IMAGE_NAME}" "/tmp/${IMAGE_NAME}"
