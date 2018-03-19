@@ -7,12 +7,11 @@ echo "#############################################"
 # run custom setup script inside context of image
 if [[ -d "/tmp/install" ]]; then
   for file in /tmp/install/*;do
-      echo "copying script to ${file}..."
       install -Dm755 "$file" "mnt/${file}"
+      echo "added script: ${file}"
   done
 fi
 if [[ -f "/tmp/setup" ]]; then
-  echo "copying script to /tmp/setup..."
   install -Dm755 "/tmp/setup" "mnt/tmp/setup"
-  chroot mnt "/tmp/setup"
+  echo "added script: /tmp/setup"
 fi

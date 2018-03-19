@@ -27,8 +27,13 @@ if [[ -f "/tmp/${IMAGE_NAME}" ]]; then
 fi
 
 disk-init
-copy-scripts
 load-os
+copy-scripts
+
+if [[ -f "/tmp/setup" ]]; then
+  echo "running setup script..."
+  chroot mnt /tmp/setup
+fi
 
 # now export the finalized image for flashing
 cp "${IMAGE_NAME}" "/tmp/${IMAGE_NAME}"
