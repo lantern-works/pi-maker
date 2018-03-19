@@ -1,2 +1,3 @@
-share
+share/*.tar.gz
+share/*.img
 .DS_Store

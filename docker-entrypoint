@@ -25,6 +25,15 @@ trap cleanup EXIT
 disk-init
 load-os
 
+# run custom setup script inside context of image
+if [[ -f "/tmp/setup" ]]; then
+  install -Dm755 "/tmp/setup" "mnt/tmp/setup"
+  chroot mnt "/tmp/setup"
+fi
 
-# Finally, after setup, make available for use with Docker volume
+# now export the finalized image for flashing
 cp "${IMAGE_NAME}" "/tmp/${IMAGE_NAME}"
+
+echo "---------------------------------------------"
+echo " ${IMAGE_NAME} is now ready for flashing"
+echo "---------------------------------------------"
