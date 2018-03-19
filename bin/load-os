@@ -8,10 +8,10 @@ echo "## Installing Operating System"
 echo "#############################################"
 echo "downloading or using cache..."
 
-[ ! -f "/tmp/ext/${OS_IMAGE}" ] && wget -P "/tmp/ext/" "${OS_URI}"
+[ ! -f "/tmp/${OS_IMAGE}" ] && wget -P "/tmp/" "${OS_URI}"
 
 echo "unpacking..."
-tar -xpf "/tmp/ext/${OS_IMAGE}" -C mnt 2> >(grep -v "Ignoring unknown extended header keyword")
+tar -xpf "/tmp/${OS_IMAGE}" -C mnt 2> >(grep -v "Ignoring unknown extended header keyword")
 
 ls -al mnt
 

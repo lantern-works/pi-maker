@@ -1,20 +1,14 @@
 #!/bin/bash
 
+SCRIPT_DIR=${SCRIPT_DIR:-install}
+
 echo "#############################################"
 echo "## Copy Scripts "
 echo "#############################################"
 
 # run custom setup script inside context of image
-if [[ -d "/tmp/install" ]]; then
-  for file in /tmp/install/*;do
-      install -Dm755 "$file" "mnt/${file}"
-      echo "added script: ${file}"
-  done
-fi
-
-# allows pi-maker to run within directories with another container
-if [[ -d "/tmp/container/install" ]]; then
-  for file in /tmp/container/install/*;do
+if [[ -d "/tmp/${SCRIPT_DIR}" ]]; then
+  for file in "/tmp/${SCRIPT_DIR}"/*;do
       install -Dm755 "$file" "mnt/${file}"
       echo "added script: ${file}"
   done

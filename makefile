@@ -10,4 +10,4 @@ build:
 	docker build -t "pi-maker:${TAG}" .
 
 run:
-	docker run -it --privileged --volume ${PWD}/share:/tmp "pi-maker:${TAG}"
+	docker run -it --privileged --volume ${PWD}/share:/tmp -e SCRIPT_DIR="my-scripts" "pi-maker:${TAG}"

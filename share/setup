@@ -1,8 +1,9 @@
 #!/bin/bash
 
+SCRIPT_DIR=${SCRIPT_DIR:-install}
+
 # modify this to meet your needs on the Raspberry Pi device
 echo "customizing device..." 
 
 # install some software copied from shared volume...
-/tmp/install/test-install
-/tmp/container/install/more-install
+"/tmp/${SCRIPT_DIR}/test-install"
