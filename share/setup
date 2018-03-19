@@ -1,4 +1,7 @@
 #!/bin/bash
 
 # modify this to meet your needs on the Raspberry Pi device
-echo "customizing device..."
+echo "customizing device..." 
+
+# install some software copied from shared volume...
+/tmp/install/test-install

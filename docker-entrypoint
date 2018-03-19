@@ -15,7 +15,6 @@ cleanup() {
         umount "mnt" || true
         rmdir "mnt" || true
    fi
-
    loopdev=$(losetup --find --show "${IMAGE_NAME}")
    [ -n "${loopdev}" ] && losetup --detach "${loopdev}" || true
 }
@@ -28,13 +27,8 @@ if [[ -f "/tmp/${IMAGE_NAME}" ]]; then
 fi
 
 disk-init
+copy-scripts
 load-os
-
-# run custom setup script inside context of image
-if [[ -f "/tmp/setup" ]]; then
-  install -Dm755 "/tmp/setup" "mnt/tmp/setup"
-  chroot mnt "/tmp/setup"
-fi
 
 # now export the finalized image for flashing
 cp "${IMAGE_NAME}" "/tmp/${IMAGE_NAME}"
