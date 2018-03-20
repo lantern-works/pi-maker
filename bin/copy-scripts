@@ -1,25 +1,25 @@
 #!/bin/bash
 
-SCRIPT_DIR=${SCRIPT_DIR:-install}
-COPY_DIR=${COPY_DIR:-""}
-
 echo "#############################################"
 echo "## Copy Scripts "
 echo "#############################################"
 
 # run custom setup script inside context of image
-if [[ -d "/tmp/${SCRIPT_DIR}" ]]; then
-  for file in "/tmp/${SCRIPT_DIR}"/*;do
-      install -Dm755 "$file" "mnt/${file}"
-      echo "added script: ${file}"
-  done
+
+if [[ -n "${SCRIPT_DIR}" ]]; then
+  if [[ -d "/tmp/${SCRIPT_DIR}" ]]; then
+    for file in "/tmp/${SCRIPT_DIR}"/*;do
+        install -Dm755 "$file" "mnt/${file}"
+        echo "added script: ${file}"
+    done
+  fi
 fi
 
-if [[ ! "${COPY_DIR}" == null ]]; then
-    if [[ -d "/tmp/${COPY_DIR}" ]]; then
-        echo "adding directory: /tmp/${COPY_DIR}"
-        cp -rf "/tmp/${COPY_DIR}" "mnt/tmp/${COPY_DIR}"
-    fi
+if [[ -n "${COPY_DIR}" ]]; then
+  if [[ -d "/tmp/${COPY_DIR}" ]]; then
+      echo "adding directory: /tmp/${COPY_DIR}"
+      cp -rf "/tmp/${COPY_DIR}" "mnt/tmp/${COPY_DIR}"
+  fi
 fi
 
 
