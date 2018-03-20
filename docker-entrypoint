@@ -28,11 +28,14 @@ fi
 
 disk-init
 load-os
-copy-scripts
+copy-to-pi
 
-if [[ -f "/tmp/setup" ]]; then
-  echo "running setup script..."
-  chroot mnt /tmp/setup
+# run custom setup script inside context of image
+if [[ -n "${SETUP_SCRIPT}" ]]; then
+  if [[ -f "${SETUP_SCRIPT}" ]]; then
+    echo "running setup script..."
+    chroot mnt "${SETUP_SCRIPT}"
+  fi
 fi
 
 # now export the finalized image for flashing

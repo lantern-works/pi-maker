@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# modify this to meet your needs on the Raspberry Pi device
-echo "installing my software..." 

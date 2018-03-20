@@ -12,6 +12,7 @@ build:
 run:
 	docker run -it --privileged \
 		--volume ${PWD}/share:/tmp \
-		-e SCRIPT_DIR="my-scripts" \
-		-e COPY_DIR="copy-this" \
+		-e SCRIPT_DIR="/tmp/my-scripts" \
+		-e COPY_DIR="/tmp/copy-this" \
+		-e SETUP_SCRIPT="/tmp/setup" \
 		"pi-maker:${TAG}"
