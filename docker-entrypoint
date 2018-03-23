@@ -6,17 +6,30 @@ set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 IFS=$'\n\t'
 
+
 cleanup() {
-   if [[ -d "mnt" ]]; then
-        umount "mnt/dev" || true
-        umount "mnt/proc" || true
-        umount "mnt/sys" || true
-        umount "mnt/boot" || true
-        umount "mnt" || true
-        rmdir "mnt" || true
-   fi
-   loopdev=$(losetup --find --show "${IMAGE_NAME}")
-   [ -n "${loopdev}" ] && losetup --detach "${loopdev}" || true
+  if [[ -d "mnt/dev" ]]; then
+      umount "mnt/dev" || true
+  fi
+
+  if [[ -d "mnt/proc" ]]; then
+      umount "mnt/proc" || true
+  fi
+
+  if [[ -d "mnt/sys" ]]; then
+      umount "mnt/sys" || true
+  fi
+
+  if [[ -d "mnt/boot" ]]; then
+      umount "mnt/boot" || true
+  fi
+
+  if [[ -d "mnt" ]]; then
+      umount "mnt" || true
+      rmdir "mnt" || true
+  fi
+  loopdev=$(losetup --find --show "${IMAGE_NAME}")
+  [ -n "${loopdev}" ] && losetup --detach "${loopdev}" || true
 }
 
 trap cleanup EXIT
@@ -39,6 +52,7 @@ if [[ -n "${SETUP_SCRIPT}" ]]; then
 fi
 
 # now export the finalized image for flashing
+[ ! -d "/tmp/build" ] && mkdir "/tmp/build"
 cp "${IMAGE_NAME}" "/tmp/build/${IMAGE_NAME}"
 
 echo "---------------------------------------------"

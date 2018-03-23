@@ -11,13 +11,19 @@ echo "#############################################"
 losetup -D
 fallocate -l "${IMAGE_SIZE}" "${IMAGE_NAME}"
 loopdev=$(losetup --find --show "${IMAGE_NAME}")
+sleep 5
 parted --script "${loopdev}" mklabel msdos
 parted --script "${loopdev}" mkpart primary fat32 0% 100M
 parted --script "${loopdev}" mkpart primary ext4 100M 100%
+sleep 5
 
+# known issue can trigger on first container run
 if [[ ! $(ls "${loopdev}"*1) ]]; then
-    echo "could not find valid loopdev... exiting..."
-    exit
+    echo "------------------------------------------"
+    echo "WARNING: Missing a required partition. This can happen once."
+    echo "Please run script once more to fix."
+    echo "------------------------------------------"
+    kill 0
 fi
 
 bootdev=$(ls "${loopdev}"*1)
