@@ -21,9 +21,9 @@ cleanup() {
 
 trap cleanup EXIT
 
-if [[ -f "/tmp/${IMAGE_NAME}" ]]; then
+if [[ -f "/tmp/build/${IMAGE_NAME}" ]]; then
   echo "removing old image..."
-  rm /tmp/${IMAGE_NAME}
+  rm /tmp/build/${IMAGE_NAME}
 fi
 
 disk-init
@@ -39,7 +39,7 @@ if [[ -n "${SETUP_SCRIPT}" ]]; then
 fi
 
 # now export the finalized image for flashing
-cp "${IMAGE_NAME}" "/tmp/${IMAGE_NAME}"
+cp "${IMAGE_NAME}" "/tmp/build/${IMAGE_NAME}"
 
 echo "---------------------------------------------"
 echo " ${IMAGE_NAME} is now ready for flashing"
