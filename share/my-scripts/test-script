@@ -15,3 +15,6 @@ grep 'dtoverlay=pwm-2chan,pin=12,func=4,pin2=13,func2=4' /boot/config.txt >/dev/
 grep 'hdmi_force_hotplug=1' /boot/config.txt >/dev/null || echo 'hdmi_force_hotplug=1' >> /boot/config.txt
 
 echo "successfully ran test script!"
+
+# make sure all changes are saved in from memory to disk
+sync
