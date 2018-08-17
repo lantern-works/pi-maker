@@ -14,4 +14,6 @@ run:
 		-e SCRIPT_DIR="/tmp/my-scripts" \
 		-e COPY_DIR="/tmp/copy-this" \
 		-e SETUP_SCRIPT="/tmp/setup" \
+		-e OS_URI="${OS_URI}" \
+		-e OS_IMAGE="${OS_IMAGE}" \
 		"pi-maker:${TAG}"

@@ -11,7 +11,8 @@ echo "downloading or using cache..."
 [ ! -f "/tmp/build/${OS_IMAGE}" ] && wget -P "/tmp/build/" "${OS_URI}"
 
 echo "unpacking..."
-tar -xpf "/tmp/build/${OS_IMAGE}" -C mnt 2> >(grep -v "Ignoring unknown extended header keyword")
+file "/tmp/build/${OS_IMAGE}" | grep 'gzip compressed data' && tar -xpf "/tmp/build/${OS_IMAGE}" -C mnt 2> >(grep -v "Ignoring unknown extended header keyword")
+file "/tmp/build/${OS_IMAGE}" | grep 'Zip archive data' && unzip "/tmp/build/${OS_IMAGE}" -d mnt 2>
 
 ls -al mnt
 
