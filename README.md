@@ -27,8 +27,8 @@ apt-get install binfmt-support qemu-user-static make
 By exporting `OS_IMAGE` and `OS_URI` you can use a different operating system, like so:
 
 ```bash
-export OS_IMAGE=2018-06-27-raspbian-stretch-lite.zip
-export OS_URI=http://vx2-downloads.raspberrypi.org/raspbian_lite/images/${OS_IMAGE%%.zip}/${OS_IMAGE}
+export OS_IMAGE=root.tar.xz
+export OS_URI=http://vx2-downloads.raspberrypi.org/raspbian_lite/archive/${OS_IMAGE}
 make run
 ```
 
