@@ -13,7 +13,6 @@ echo "downloading or using cache..."
 echo "unpacking..."
 FILETYPE=$(file "/tmp/build/${OS_IMAGE}")
 echo "$FILETYPE" | grep -E '(?:XZ|gzip) compressed data' && tar -xpf "/tmp/build/${OS_IMAGE}" -C mnt 2> >(grep -v "Ignoring unknown extended header keyword")
-echo $FILETYPE
 echo "$FILETYPE" | grep 'Zip archive data' && unzip "/tmp/build/${OS_IMAGE}" -d mnt
 
 ls -al mnt
