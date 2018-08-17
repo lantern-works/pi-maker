@@ -5,6 +5,7 @@ SHELL := /bin/bash
 TAG?=latest
 OS_IMAGE?=ArchLinuxARM-rpi-latest.tar.gz
 OS_URI?=http://archlinuxarm.org/os/$(OS_IMAGE)
+IMAGE_SIZE?=2G
 DATE := $(shell date +%s)
 
 build:
@@ -18,4 +19,5 @@ run:
 		-e SCRIPT_DIR="/tmp/my-scripts" \
 		-e COPY_DIR="/tmp/copy-this" \
 		-e SETUP_SCRIPT="/tmp/setup" \
-		"pi-maker:${TAG}" ${cmd}
+		-e IMAGE_SIZE=$(IMAGE_SIZE) \
+		"pi-maker:${TAG}"

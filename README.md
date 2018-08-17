@@ -37,12 +37,6 @@ popd
 make run
 ```
 
-### Development
-
-If you want to work on pi-maker, it might be useful to spawn an interactive shell.
-
-You can do this with `cmd=/bin/bash make run` to override the entrypoint
-
 ## Reference
 - [Raspberry Pi: How to Install and Configure Archlinux ARM](http://populationinversion.com/posts/raspberrypi-install-and-configure-archlinux-arm/)
 - [Create Custom ArchlinuxArm Images for the Raspberry Pi](https://disconnected.systems/blog/raspberry-pi-archlinuxarm-setup)
