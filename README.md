@@ -22,6 +22,16 @@ Ubuntu users should install these packages before building an image:
 apt-get install binfmt-support qemu-user-static make
 ```
 
+### Customization
+
+By exporting `OS_IMAGE` and `OS_URI` you can use a different operating system, like so:
+
+```bash
+export OS_IMAGE=2018-06-27-raspbian-stretch-lite.zip
+export OS_URI=http://vx2-downloads.raspberrypi.org/raspbian_lite/images/${OS_IMAGE%%.zip}/${OS_IMAGE}
+make run
+```
+
 ## Reference
 - [Raspberry Pi: How to Install and Configure Archlinux ARM](http://populationinversion.com/posts/raspberrypi-install-and-configure-archlinux-arm/)
 - [Create Custom ArchlinuxArm Images for the Raspberry Pi](https://disconnected.systems/blog/raspberry-pi-archlinuxarm-setup)
