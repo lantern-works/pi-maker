@@ -27,10 +27,21 @@ apt-get install binfmt-support qemu-user-static make
 By exporting `OS_IMAGE` and `OS_URI` you can use a different operating system, like so:
 
 ```bash
-export OS_IMAGE=root.tar.xz
-export OS_URI=http://vx2-downloads.raspberrypi.org/raspbian_lite/archive/${OS_IMAGE}
+# Creating a rasbian image requires grabbing both boot and root which are separated o_O
+pushd share/build
+wget http://vx2-downloads.raspberrypi.org/raspbian_lite/archive/2018-06-29-03:25/boot.tar.xz
+wget http://vx2-downloads.raspberrypi.org/raspbian_lite/archive/2018-06-29-03:25/root.tar.xz
+xzcat root.tar.xz boot.tar.xz | xz -c > combined.tar.xz
+export OS_IMAGE=combined.tar.xz
+popd
 make run
 ```
+
+### Development
+
+If you want to work on pi-maker, it might be useful to spawn an interactive shell.
+
+You can do this with `cmd=/bin/bash make run` to override the entrypoint
 
 ## Reference
 - [Raspberry Pi: How to Install and Configure Archlinux ARM](http://populationinversion.com/posts/raspberrypi-install-and-configure-archlinux-arm/)

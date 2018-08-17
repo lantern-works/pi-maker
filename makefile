@@ -18,4 +18,4 @@ run:
 		-e SCRIPT_DIR="/tmp/my-scripts" \
 		-e COPY_DIR="/tmp/copy-this" \
 		-e SETUP_SCRIPT="/tmp/setup" \
-		"pi-maker:${TAG}"
+		"pi-maker:${TAG}" ${cmd}
