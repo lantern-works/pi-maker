@@ -12,7 +12,7 @@ echo "downloading or using cache..."
 
 echo "unpacking..."
 file "/tmp/build/${OS_IMAGE}" | grep 'gzip compressed data' && tar -xpf "/tmp/build/${OS_IMAGE}" -C mnt 2> >(grep -v "Ignoring unknown extended header keyword")
-file "/tmp/build/${OS_IMAGE}" | grep 'Zip archive data' && unzip "/tmp/build/${OS_IMAGE}" -d mnt 2>
+file "/tmp/build/${OS_IMAGE}" | grep 'Zip archive data' && unzip "/tmp/build/${OS_IMAGE}" -d mnt
 
 ls -al mnt
 
