@@ -21,3 +21,6 @@ run:
 		-e SETUP_SCRIPT="/tmp/setup" \
 		-e IMAGE_SIZE=$(IMAGE_SIZE) \
 		"pi-maker:${TAG}"
+
+flash: build run
+	etcher ./share/build/rpi.img
