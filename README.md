@@ -7,11 +7,26 @@
 make && make run
 ```
 
-### Flashing Your Image
+A new disk image for Raspberry Pi will appear inside this project folder within "share/build". This solution has been tested with Raspberry Pi Zero W and may work for other models, too. 
+
+
+### Next: Flash With Desktop App
 
 [Download Etcher](http://etcher.io)
 
-A new image file will appear in your "share/build" folder. Select this in Etcher and flash your SD Card and your Raspberry Pi is ready to go.
+Open the desktop application and follow the prompts to select the disk image and the desired SD Card to use.
+
+### Or: Flash With Command Line
+
+[Install Etcher CLI](https://etcher.io/cli/)
+
+Run the commands below and the terminal will prompt you to select the desired drive to install to. Please be careful to select the proper SD Card and not another disk to avoid unwanted data loss.
+
+```bash
+make && make run
+sudo etcher ./share/build/rpi.img
+```
+
 
 ### Requirements
 
@@ -27,7 +42,7 @@ apt-get install binfmt-support qemu-user-static make
 By exporting `OS_IMAGE`, and/or `OS_URI` you can use a different operating system, like so:
 
 ```bash
-# Creating a rasbian image requires merging the boot partition into the root tar
+# Creating a raspbian image requires merging the boot partition into the root tar
 pushd share/build
 wget http://vx2-downloads.raspberrypi.org/raspbian_lite/archive/2018-06-29-03:25/boot.tar.xz
 wget http://vx2-downloads.raspberrypi.org/raspbian_lite/archive/2018-06-29-03:25/root.tar.xz
@@ -39,6 +54,7 @@ export OS_IMAGE=root.tar
 popd
 make run
 ```
+
 
 ## Reference
 - [Raspberry Pi: How to Install and Configure Archlinux ARM](http://populationinversion.com/posts/raspberrypi-install-and-configure-archlinux-arm/)
