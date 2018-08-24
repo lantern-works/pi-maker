@@ -37,6 +37,24 @@ Ubuntu users should install these packages before building an image:
 apt-get install binfmt-support qemu-user-static make
 ```
 
+### Customization
+
+By exporting `OS_IMAGE`, and/or `OS_URI` you can use a different operating system, like so:
+
+```bash
+# Creating a raspbian image requires merging the boot partition into the root tar
+pushd share/build
+wget http://vx2-downloads.raspberrypi.org/raspbian_lite/archive/2018-06-29-03:25/boot.tar.xz
+wget http://vx2-downloads.raspberrypi.org/raspbian_lite/archive/2018-06-29-03:25/root.tar.xz
+unxz root.tar.xz
+mkdir -p boot && tar -xf boot.tar.xz -C boot && sudo chown -R 0 boot && sudo chgrp -R 0 boot
+tar -rf root.tar boot && sudo rm -rf boot
+export IMAGE_SIZE=4G
+export OS_IMAGE=root.tar
+popd
+make run
+```
+
 
 ## Reference
 - [Raspberry Pi: How to Install and Configure Archlinux ARM](http://populationinversion.com/posts/raspberrypi-install-and-configure-archlinux-arm/)
