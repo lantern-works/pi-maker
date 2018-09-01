@@ -14,4 +14,5 @@ RUN apt-get update && apt-get -y install \
     qemu-user-static
 COPY docker-entrypoint /usr/local/bin/docker-entrypoint
 COPY bin/* /usr/local/bin/
-ENTRYPOINT "/usr/local/bin/docker-entrypoint"
+
+ENTRYPOINT "/usr/local/bin/entrypoint"
