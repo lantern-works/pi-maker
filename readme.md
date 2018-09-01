@@ -9,7 +9,6 @@ make && make run
 
 A new disk image for Raspberry Pi will appear inside this project folder within "share/build". This solution has been tested with Raspberry Pi Zero W and may work for other models, too.
 
-
 ### Next: Flash With Desktop App
 
 [Download Etcher](http://etcher.io)
