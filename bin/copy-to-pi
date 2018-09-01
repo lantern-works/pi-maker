@@ -7,8 +7,7 @@ echo "#############################################"
 if [[ -n "${COPY_DIR}" ]]; then
   if [[ -d "${COPY_DIR}" ]]; then
       echo "adding directory: ${COPY_DIR}"
-      mkdir -p "mnt${COPY_DIR}"
-      cp -rf "${COPY_DIR}" "mnt${COPY_DIR}"
+      cp -rf "${COPY_DIR}/*" "mnt/"
   fi
 fi
 
