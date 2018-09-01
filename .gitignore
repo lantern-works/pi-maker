@@ -1,3 +1,4 @@
 *.tar.gz
 *.img
+share/build
 .DS_Store
