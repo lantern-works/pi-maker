@@ -9,6 +9,7 @@ IMAGE_SIZE?=2G
 DATE := $(shell date +%s)
 
 build:
+	docker run --rm --privileged multiarch/qemu-user-static:register --reset
 	docker build -t "pi-maker:${TAG}" .
 
 run:
