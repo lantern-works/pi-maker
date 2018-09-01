@@ -7,7 +7,7 @@
 make && make run
 ```
 
-A new disk image for Raspberry Pi will appear inside this project folder within "share/build". This solution has been tested with Raspberry Pi Zero W and may work for other models, too. 
+A new disk image for Raspberry Pi will appear inside this project folder within "share/build". This solution has been tested with Raspberry Pi Zero W and may work for other models, too.
 
 
 ### Next: Flash With Desktop App
@@ -27,17 +27,23 @@ make && make run
 sudo etcher ./share/build/rpi.img
 ```
 
-
 ### Requirements
 
 A local [Docker](https://www.docker.com/community-edition) environment is required in order to build an image.
 
-Ubuntu users should install these packages before building an image:
-```bash
-apt-get install binfmt-support qemu-user-static make
-```
-
 ### Customization
+
+The docker entrypoint mainly does two things:
+
+  1. copies all files from `share/copy-this` to the root filesystem
+  2. runs `share/setup` (as root)
+    * ...which runs `share/my-scripts/test-script` by default
+
+The easiest way to customize the image build process, is to put scripts in `share/my-scripts`,
+and edit `share/setup` to run whatever scripts you want. Remember the scripts will run as root
+so if you want to do something as the pi user, prefix it with `sudo -u pi dothething`.
+
+#### Customizing the base OS
 
 By exporting `OS_IMAGE`, and/or `OS_URI` you can use a different operating system, like so:
 
@@ -54,7 +60,6 @@ export OS_IMAGE=root.tar
 popd
 make run
 ```
-
 
 ## Reference
 - [Raspberry Pi: How to Install and Configure Archlinux ARM](http://populationinversion.com/posts/raspberrypi-install-and-configure-archlinux-arm/)
