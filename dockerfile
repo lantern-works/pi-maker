@@ -2,19 +2,19 @@ FROM multiarch/alpine:armhf-v3.8
 
 RUN apk update && apk upgrade
 RUN apk add \
-zip \
-wget \
-parted \
-udev \
-file \
 bash \
-dosfstools \
-util-linux \
 coreutils \
+dosfstools \
 e2fsprogs \
+file \
 libcap \
+parted \
+qemu \
 shadow \
-qemu
+udev \
+util-linux \
+wget \
+zip
 
 COPY bin/* /usr/local/bin/
 
