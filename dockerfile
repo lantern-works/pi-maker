@@ -1,7 +1,7 @@
 FROM multiarch/alpine:armhf-v3.8
 
 RUN apk update && apk upgrade
-RUN apk install \
+RUN apk add \
 zip \
 wget \
 parted \
