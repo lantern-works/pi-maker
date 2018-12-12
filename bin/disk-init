@@ -23,7 +23,7 @@ if [[ ! $(ls "${loopdev}"*1) ]]; then
     echo "WARNING: Missing a required partition. This can happen once."
     echo "Please run script once more to fix."
     echo "------------------------------------------"
-    kill 0
+    exit
 fi
 
 bootdev=$(ls "${loopdev}"*1)
