@@ -5,7 +5,7 @@ SHELL := /bin/bash
 TAG?=latest
 OS_IMAGE?=ArchLinuxARM-rpi-latest.tar.gz
 OS_URI?=http://archlinuxarm.org/os/$(OS_IMAGE)
-IMAGE_SIZE?=2G
+IMAGE_SIZE?=3G
 
 build:
 	docker run --rm --privileged multiarch/qemu-user-static:register --reset
