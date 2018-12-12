@@ -9,6 +9,7 @@ e2fsprogs \
 file \
 libcap \
 parted \
+pv \
 qemu \
 shadow \
 udev \
