@@ -49,7 +49,7 @@ By exporting `OS_IMAGE`, and/or `OS_URI` you can use a different operating syste
 ```bash
 # Creating a raspbian image requires merging the boot partition into the root tar
 pushd share/build
-export LATEST_BUILD='2018-10-11-11:38'
+export LATEST_BUILD='2018-11-15-21:03'
 wget http://vx2-downloads.raspberrypi.org/raspbian_lite/archive/${LATEST_BUILD}/boot.tar.xz
 wget http://vx2-downloads.raspberrypi.org/raspbian_lite/archive/${LATEST_BUILD}/root.tar.xz
 unxz root.tar.xz
