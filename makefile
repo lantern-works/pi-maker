@@ -1,6 +1,5 @@
 MAKEFLAGS += --warn-undefined-variables
 SHELL := /bin/bash
-.DEFAULT_GOAL := build
 
 TAG?=latest
 OS_IMAGE?=ArchLinuxARM-rpi-latest.tar.gz
