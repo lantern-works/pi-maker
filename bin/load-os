@@ -6,8 +6,13 @@ OS_URI=${OS_URI:-http://archlinuxarm.org/os/${OS_IMAGE}}
 echo "#############################################"
 echo "## Installing Operating System"
 echo "#############################################"
-echo "downloading or using cache..."
-[ ! -f "/tmp/build/${OS_IMAGE}" ] && wget -P "/tmp/build/" "${OS_URI}"
+if [[ ! -f "/tmp/build/${OS_IMAGE}" ]]; then
+	echo "download os..."
+	wget -P "/tmp/build/" "${OS_URI}"
+else
+	echo "use existing os..."
+fi
+
 
 echo "unpacking..."
 file "/tmp/build/${OS_IMAGE}" | grep -E '((XZ|gzip) compressed data|POSIX tar archive)'
