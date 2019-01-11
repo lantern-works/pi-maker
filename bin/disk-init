@@ -3,6 +3,15 @@
 IMAGE_NAME=${IMAGE_NAME:-rpi.img}
 IMAGE_SIZE=${IMAGE_SIZE:-2G}
 
+
+trap cleanup EXIT
+
+
+cleanup() {
+	echo "cleaning up disk init..."
+}
+
+
 echo -e "creating ${IMAGE_SIZE} disk named ${IMAGE_NAME}..."
 
 echo "#############################################"

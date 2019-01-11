@@ -7,19 +7,24 @@ trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 IFS=$'\n\t'
 
 cleanup() {
+  echo "cleaning up entrypoint..."
   if [[ -d "mnt/dev" ]]; then
+      echo "unmounting dev..."
       umount "mnt/dev" || true
   fi
 
-  if [[ -d "mnt/proc" ]]; then
+  if [[ -d "mnt/proc" ]]; then      
+      echo "unmounting proc..."
       umount "mnt/proc" || true
   fi
 
   if [[ -d "mnt/sys" ]]; then
+      echo "unmounting sys..."
       umount "mnt/sys" || true
   fi
 
   if [[ -d "mnt/boot" ]]; then
+      echo "unmounting boot..."
       umount "mnt/boot" || true
   fi
 
