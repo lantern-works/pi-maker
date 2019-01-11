@@ -10,7 +10,8 @@ build:
 	docker run --rm --privileged multiarch/qemu-user-static:register --reset
 	docker build -t "pi-maker:${TAG}" .
 
-run:
+image:
+	docker pull westlane/pi-maker
 	docker run -it --privileged \
 		--volume ${PWD}/share:/tmp \
 		-e OS_IMAGE="$(OS_IMAGE)" \
@@ -19,7 +20,7 @@ run:
 		-e COPY_DIR="/tmp/copy-this" \
 		-e SETUP_SCRIPT="/tmp/setup" \
 		-e IMAGE_SIZE=$(IMAGE_SIZE) \
-		"pi-maker:${TAG}"
+		"westlane/pi-maker:${TAG}"
 
-flash: build run
+flash: build image
 	etcher ./share/build/rpi.img

@@ -4,7 +4,7 @@
 ### Getting Started
 
 ```bash
-make && make run
+make && make image
 ```
 
 A new disk image for Raspberry Pi will appear inside this project folder within "share/build". This solution has been tested with Raspberry Pi Zero W and may work for other models, too.
@@ -22,7 +22,7 @@ Open the desktop application and follow the prompts to select the disk image and
 Run the commands below and the terminal will prompt you to select the desired drive to install to. Please be careful to select the proper SD Card and not another disk to avoid unwanted data loss.
 
 ```bash
-make && make run
+make && make image
 sudo etcher ./share/build/rpi.img
 ```
 
@@ -58,7 +58,7 @@ tar -rf root.tar boot && sudo rm -rf boot
 export IMAGE_SIZE=4G
 export OS_IMAGE=root.tar
 popd
-make run
+make image
 ```
 
 ## Reference
